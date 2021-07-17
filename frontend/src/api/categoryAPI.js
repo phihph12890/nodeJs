@@ -6,6 +6,7 @@ export const categoryAPI = {
         return axiosClient.get(url);
     },
     read(id) {
+        console.log(id);
         const url = `/categories/${id}`;
         return axiosClient.get(url);
     },

@@ -4,11 +4,11 @@ import axios from 'axios';
 const authAPI = {
     signup(user) {
         const url = '/signup';
-        return axios.post(url, user);
+        return axiosClient.post(url, user);
     },
     signin(user) {
         const url = '/signin';
-        return axios.post(url, user);
+        return axiosClient.post(url, user);
     },
     list() {
         const url = `http://localhost:3001/users`;

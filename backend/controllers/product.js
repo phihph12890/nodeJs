@@ -3,6 +3,7 @@ import formidable from 'formidable';
 import fs from 'fs';
 import _ from 'lodash';
 
+
 export const create = (req, res) => {
     // let form = new formidable.IncomingForm();
     // form.keepExtensions = true;
@@ -136,8 +137,8 @@ export const update = (req, res) => {
     });
 }
 export const productByCategory = (req, res) => {
-    // console.log(req.category)
-    Product.find({ "category": "60ef975877b6a82c9415b40d" }, (err, products) => {
+    console.log(req.category)
+    Product.find({ "category": req.category._id }, (err, products) => {
         if (err) {
             res.status(400).json({
                 error: "Products not found"

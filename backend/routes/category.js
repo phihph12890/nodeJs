@@ -7,13 +7,13 @@ const router = express.Router();
 //Danh sách danh mục
 router.get('/categories', list);
 //Chi tiết danh mục
-router.get('/category/:categoryId', read);
+router.get('/categories/:categoryId', read);
 //Thêm mới danh mục
-router.post('/category', create);
+router.post('/categories', create);
 //Cập nhật danh mục
-router.put('/category/:categoryId', update);
+router.put('/categories/:categoryId', update);
 //Xoá danh mục
-router.delete('/category/:categoryId', remove);
+router.delete('/categories/:categoryId', remove);
 //Lấy param
 router.param('categoryId', categoryById);
 

@@ -8,13 +8,13 @@ const router = express.Router();
 router.get('/products', list);
 router.get('/products/categories/:categoryId', productByCategory);
 //Chi tiết sản phẩm
-router.get('/product/:productId', read);
+router.get('/products/:productId', read);
 //Thêm mới sản phẩm 
-router.post('/product', create);
+router.post('/products', create);
 //Cập nhật sản phẩm
-router.put('/product/:productId', update);
+router.put('/products/:productId', update);
 //Xoá sản phẩm
-router.delete('/product/:productId', remove);
+router.delete('/products/:productId', remove);
 //Lấy param
 router.param('categoryId', categoryById);
 router.param('productId', productById);

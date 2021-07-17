@@ -9,8 +9,12 @@ export const productAPI = {
         const url = `/products?_expand=category`;
         return axiosClient.get(url);
     },
+    productByCategory(id){
+        const url = `/products/categories/${id}`;
+        return axiosClient.get(url);
+    },
     read(id) {
-        const url = `/products/${id}?_expand=category`;
+        const url = `/products/${id}`;
         return axiosClient.get(url);
     },
     relateProduct(categoryId, id) {
