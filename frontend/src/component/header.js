@@ -13,9 +13,9 @@ const header = {
                     </div>
                 `
             } else {
-                const { data: user } = await authAPI.read(isAuthenticated().sub);
+                const { data: user } = await authAPI.read(isAuthenticated()._id);
                 console.log(user);
-                if (user.permission == "admin") {
+                if (user.role == 1) {
                     return `
                     <div class="ml-3 group cursor-pointer ">
                         <span class="text-red-600 text-lg" style="margin-left:30px;"><i class="fas fa-user"></i></span>

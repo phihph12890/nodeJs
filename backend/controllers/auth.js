@@ -59,7 +59,7 @@ export const signup = (req, res) => {
     //     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     // })
 }
-exports.signin = (req, res) => {
+export const signin = (req, res) => {
     const { email, password } = req.body;
     User.findOne({ email }, (error, user) => {
         if (error || !user) {
@@ -93,9 +93,25 @@ export const signout = (req, res) => {
         message: 'Đăng xuất thành công'
     })
 }
-// export const list = (req, res) => {
-//     User.find()
-//         .exec((err, data) => {
-
-//         })
-// }
+// export const requireSignin = expressJwt({
+//     secret: process.env.JWT_SECRET,
+//     algorithm: ["HS256"],
+//     useProperty: "auth"
+// })
+export const isAuth = (req, res) => {
+    let user = req.profile && req.auth && req.profile._id == req.auth._id;
+    if (!user) {
+        return res.status(403).json({
+            error: "Từ chối quyền truy cập!"
+        })
+    }
+    next();
+}
+export const isAdmin = (req, res, next) => {
+    if (req.profile.role == 0) {
+        return res.status(403).json({
+            error: "Không phải ADMIN, từ chối quyền truy cập!"
+        })
+    }
+    next();
+}

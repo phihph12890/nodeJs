@@ -6,6 +6,7 @@ const router = express.Router();
 
 //Danh sách sản phẩm
 router.get('/products', list);
+//Danh sách sản phẩm theo danh mục
 router.get('/products/categories/:categoryId', productByCategory);
 //Chi tiết sản phẩm
 router.get('/products/:productId', read);

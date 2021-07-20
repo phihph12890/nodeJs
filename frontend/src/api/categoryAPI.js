@@ -10,8 +10,8 @@ export const categoryAPI = {
         const url = `/categories/${id}`;
         return axiosClient.get(url);
     },
-    listEdit(id) {
-        const url = `/categories?id_ne=${id}`;
+    listRelated(id) {
+        const url = `/categories/related/${id}`;
         return axiosClient.get(url);
     },
     add(category) {

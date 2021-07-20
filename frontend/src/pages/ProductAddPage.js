@@ -16,7 +16,7 @@ const ProductAddPage = {
         console.log(categories);
         const resultCate = categories.map(categories => {
             return `
-                <option value="${categories.id}">${categories.name}</option>
+                <option value="${categories._id}">${categories.name}</option>
             `
         })
         return `
@@ -130,8 +130,7 @@ const ProductAddPage = {
                 storageRef.put(productImage).then(function () {
                     storageRef.getDownloadURL().then((url) => {
                         const product = {
-                            id: uuidv4(),
-                            categoryId: $$("#product_category").value,
+                            category: $$("#product_category").value,
                             name: $$("#product_name").value,
                             image: url,
                             price: $$("#product_price").value,
@@ -141,6 +140,7 @@ const ProductAddPage = {
                             config: textarea_product_config.value,
                             description: textarea_product_description.value
                         }
+                        console.log(product);
                         productAPI.add(product);
                         reRender(listProduct, '#list-products');
                         window.location.hash = '/listproduct';

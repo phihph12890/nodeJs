@@ -132,16 +132,27 @@ const ProductPage = {
             $$("#list_product").innerHTML = resultFilter;
         })
         const btns = $$(".btn_addCart");
-        btns.forEach(async (btn) => {
-            var btn_id = btn.dataset.id;
-            btn.addEventListener("click", async () => {
+        if (btns.length > 1) {
+            btns.forEach(async (btn) => {
+                var btn_id = btn.dataset.id;
+                btn.addEventListener("click", async () => {
+                    console.log(btn_id);
+                    var { data: products } = await productAPI.read(btn_id);
+                    addToCart(`${products.id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.categoryId}`, `${products.category.name}`);
+                    getTotalItemOnCart();
+                    onLoadCartNumber();
+                })
+            })
+        } else {
+            var btn_id = btns.dataset.id;
+            btns.addEventListener("click", async () => {
                 console.log(btn_id);
                 var { data: products } = await productAPI.read(btn_id);
                 addToCart(`${products.id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.categoryId}`, `${products.category.name}`);
                 getTotalItemOnCart();
                 onLoadCartNumber();
             })
-        })
+        }
 
     }
 }

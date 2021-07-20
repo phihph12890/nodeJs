@@ -9,7 +9,7 @@ const SigninPage = {
             <form action="" id="form_signin">
                 <h2 class="text-center pt-5 text-3xl font-semibold">ĐĂNG NHẬP</h2>
                 <div class="ml-32 mt-5">
-                    <p class="mb-1"><i class="fas fa-user mr-2"></i>Email</p><input class="px-2 py-1 rounded-md" style="width:330px;" type="email" id="email" value="hoangphi@gmail.com">
+                    <p class="mb-1"><i class="fas fa-user mr-2"></i>Email</p><input class="px-2 py-1 rounded-md" style="width:330px;" type="email" id="email" value="phi1@gmail.com">
                     <p class="mt-3  mb-1"><i class="fas fa-key mr-2"></i>Password</p><input class="px-2 py-1 rounded-md" style="width:330px;" type="password" id="password" value="123456"> <br>
                 </div>
                 <div class="mt-2">
@@ -40,8 +40,9 @@ const SigninPage = {
             }
             // console.log(JSON.stringify(user));
             authAPI.signin(JSON.stringify(user))
-                .then(({ data }) => {
-                    authenticated(data);
+                .then(({data}) => {
+                    console.log("Token: ", data.token);
+                    authenticated(data.token);
                 })
                 .then(() => {
                     toast(
@@ -53,12 +54,14 @@ const SigninPage = {
                             class: 'my-custom-class', // optional, CSS class name for action button
                         },
                     );
-                    window.location.hash = '/'
+                    window.location.hash = '/';
+
                 })
                 .catch(error => {
+                    // console.log(error.response.data.error);
                     $$('#alert').innerHTML = `
                         <div class="alert bg-red-400 text-white">
-                            ${error.response.data}
+                            ${error.response.data.error}
                         </div>
                     `;
                 })

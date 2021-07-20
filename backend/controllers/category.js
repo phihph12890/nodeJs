@@ -62,12 +62,24 @@ export const remove = (req, res) => {
 export const update = (req, res) => {
     const category = req.category;
     category.name = req.body.name;
-    category.save((err, data) =>{
+    category.save((err, data) => {
         if (err) {
             return res.status(400).json({
                 error: "Cập nhật danh mục không thành công!"
             });
         }
         res.json(data);
+    })
+}
+export const listRelated = (req, res) => {
+    Category.find({
+        _id: { $ne: req.category }
+    }).exec((err, category) => {
+        if (err) {
+            res.status(400).json({
+                error: "Products not found"
+            })
+        }
+        res.json(category)
     })
 }

@@ -5,7 +5,7 @@ const adminProductSidebar = {
     async render() {
         const sessionUser = async () => {
             if (isAuthenticated() != false) {
-                const { data: user } = await authAPI.read(isAuthenticated().sub)
+                const { data: user } = await authAPI.read(isAuthenticated()._id)
                 console.log(user);
                 return `
                     <span>${user.name}</span>

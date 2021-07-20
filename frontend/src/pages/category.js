@@ -17,7 +17,7 @@ const CategoryPage = {
         const { data: products } = await productAPI.productByCategory(id);
         console.log(products);
         const result = products.map(product => {
-                return `<div class="group overflow-hidden shadow-md bg-white ">
+            return `<div class="group overflow-hidden shadow-md bg-white ">
                             <div class="bg-white overflow-hidden ">
                                 <div class="py-2 transition duration-500 ease-in-out transform group-hover:scale-90">
                                     <a href="/#/product/${product._id}"><img class="mx-auto" src="${product.image}" alt="" width="80%"></a>
@@ -33,8 +33,8 @@ const CategoryPage = {
                             </div>
                         </div>
                         `
-            }).join('');
-            console.log(result.length);
+        }).join('');
+        console.log(result.length);
         return `
             ${await header.render()}
             ${banner.render()}
@@ -72,16 +72,27 @@ const CategoryPage = {
         $$('#sticky').style.position = 'sticky';
         $$('#sticky').style.top = "30px";
         const btns = $$(".btn_addCart");
-        btns.forEach(async (btn) => {
-            var btn_id = btn.dataset.id;
-            btn.addEventListener("click", async () => {
+        if (btns.length > 1) {
+            btns.forEach(async (btn) => {
+                var btn_id = btn.dataset.id;
+                btn.addEventListener("click", async () => {
+                    console.log(btn_id);
+                    var { data: products } = await productAPI.read(btn_id);
+                    addToCart(`${products.id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.categoryId}`, `${products.category.name}`);
+                    getTotalItemOnCart();
+                    onLoadCartNumber();
+                })
+            })
+        } else {
+            var btn_id = btns.dataset.id;
+            btns.addEventListener("click", async () => {
                 console.log(btn_id);
                 var { data: products } = await productAPI.read(btn_id);
                 addToCart(`${products.id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.categoryId}`, `${products.category.name}`);
                 getTotalItemOnCart();
                 onLoadCartNumber();
             })
-        })
+        }
     }
 }
 

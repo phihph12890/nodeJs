@@ -2,6 +2,7 @@ import jwt_decode from "jwt-decode";
 import productAPI from "./api/productAPI";
 import toast from 'toast-me';
 
+
 export const parseRequestUrl = () => {
     const url = window.location.hash.toLowerCase();
 
@@ -35,7 +36,7 @@ export const prices = (x) => {
         currency: 'VND'
     });
 }
-export const authenticated = ({ accessToken }) => {
+export const authenticated = ( accessToken ) => {
     const user = jwt_decode(accessToken);
     if (typeof window !== 'undefined') {
         return localStorage.setItem('user', JSON.stringify(user));
@@ -46,7 +47,7 @@ export const isAuthenticated = () => {
         return false
     }
     if (localStorage.getItem('user')) {
-        return JSON.parse(localStorage.getItem('user'))
+        return JSON.parse(localStorage.getItem('user'));
     } else {
         return false
     }
@@ -64,6 +65,7 @@ export const clickLogout = () => {
             localStorage.removeItem('cart');
             localStorage.removeItem('totalPrice');
             window.location.hash = '/signin';
+
         }
     }
 }

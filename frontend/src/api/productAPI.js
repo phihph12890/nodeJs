@@ -6,7 +6,7 @@ export const productAPI = {
         return axiosClient.get(url);
     },
     list() {
-        const url = `/products?_expand=category`;
+        const url = `/products`;
         return axiosClient.get(url);
     },
     productByCategory(id){

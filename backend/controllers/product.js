@@ -42,7 +42,7 @@ export const create = (req, res) => {
     const product = new Product(req.body);
     console.log(product);
     product.save((err, data) => {
-        if(err){
+        if (err) {
             console.log(err);
             return res.status(400).json({
                 error: "Add product failed"
@@ -58,7 +58,7 @@ export const list = (req, res) => {
 
     Product.find()
         // .select("-image")
-        // .populate('category')
+        .populate('category')
         // .sort([[order, sortBy]])
         // .limit(limit)
         .exec((err, data) => {
@@ -71,15 +71,17 @@ export const list = (req, res) => {
         })
 }
 export const productById = (req, res, next, id) => {
-    Product.findById(id).exec((err, product) => {
-        if (err || !product) {
-            res.status(404).json({
-                error: "Không tìm thấy sản phẩm!"
-            })
-        }
-        req.product = product;
-        next();
-    })
+    Product.findById(id)
+        .populate('category', '_id name')
+        .exec((err, product) => {
+            if (err || !product) {
+                res.status(404).json({
+                    error: "Không tìm thấy sản phẩm!"
+                })
+            }
+            req.product = product;
+            next();
+        })
 }
 
 export const read = (req, res) => {
@@ -100,41 +102,47 @@ export const remove = (req, res) => {
     })
 }
 export const update = (req, res) => {
-    let form = new formidable.IncomingForm();
-    form.keepExtensions = true;
-    form.parse(req, (err, fields, files) => {
+    // let form = new formidable.IncomingForm();
+    // form.keepExtensions = true;
+    // form.parse(req, (err, fields) => {
+    //     console.log(req);
+    //     console.log('Fields',fields);
+    //     if (err) {
+    //         return res.status(400).json({
+    //             error: "Update product failed"
+    //         })
+    //     }
+    //     const { name, description, price } = fields;
+    //     if (!name || !description || !price) {
+    //         return res.status(404).json({
+    //             error: "Bạn cần nhập đầy đủ thông tin!"
+    //         })
+    //     }
+    //     // let product = new Product(fields);
+    //     let product = req.product;
+    //         product = _.assignIn(product, fields)
+    //     product.save((err, data) => {
+    //         if (err) {
+    //             return res.status(400).json({
+    //                 error: "Update product failed"
+    //             });
+    //         }
+    //         res.json(data);
+    //     })
+    // });
+    let product = req.product;
+    console.log(product);
+    product = _.assignIn(product, req.body);
+    console.log(product);
+    product.save((err, data) => {
         if (err) {
             return res.status(400).json({
-                error: "Update product failed"
-            })
+                error: "Cập nhật sản phẩm không thành công!"
+            });
         }
-        const { name, description, price } = fields;
-        if (!name || !description || !price) {
-            return res.status(404).json({
-                error: "Bạn cần nhập đầy đủ thông tin!"
-            })
-        }
-        // let product = new Product(fields);
-        let product = req.product;
-            product = _.assignIn(product, fields)
-        if (files.photo) {
-            if (files.photo.size > 2000000) {
-                res.status(404).json({
-                    error: "Ảnh quá nặng, upload ảnh dưới 1 MB"
-                })
-            }
-            product.photo.data = fs.readFileSync(files.photo.path);
-            product.photo.contentType = files.photo.type;
-        }
-        product.save((err, data) => {
-            if (err) {
-                return res.status(400).json({
-                    error: "Update product failed"
-                });
-            }
-            res.json(data);
-        })
-    });
+        res.json(data);
+    })
+
 }
 export const productByCategory = (req, res) => {
     console.log(req.category)

@@ -1,5 +1,5 @@
 import express from 'express';
-import { create, list, categoryById, read, update, remove } from '../controllers/category';
+import { create, list, categoryById, read, update, remove, listRelated } from '../controllers/category';
 
 const router = express.Router();
 
@@ -14,6 +14,8 @@ router.post('/categories', create);
 router.put('/categories/:categoryId', update);
 //Xoá danh mục
 router.delete('/categories/:categoryId', remove);
+//List Danh mục( ngoại trừ Danh mục hiện tại)
+router.get('/categories/related/:categoryId', listRelated);
 //Lấy param
 router.param('categoryId', categoryById);
 

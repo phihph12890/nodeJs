@@ -10,13 +10,17 @@ const authAPI = {
         const url = '/signin';
         return axiosClient.post(url, user);
     },
+    signout(){
+        const url ='/signout';
+        return axiosClient.get(url);
+    },
     list() {
-        const url = `http://localhost:3001/users`;
-        return axios.get(url);
+        const url = `/users`;
+        return axiosClient.get(url);
     },
     remove(id) {
-        const url = `http://localhost:3001/users/${id}`;
-        return axios.delete(url);
+        const url = `/users/${id}`;
+        return axiosClient.delete(url);
     },
     update(id, data) {
         const url = `http://localhost:3001/users/${id}`;
@@ -24,8 +28,8 @@ const authAPI = {
     },
     read(id) {
         console.log(id);
-        const url = `http://localhost:3001/users/${id}`;
-        return axios.get(url);
+        const url = `/users/${id}`;
+        return axiosClient.get(url);
     },
 }
 export default authAPI;

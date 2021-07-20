@@ -26,10 +26,10 @@ const listUser = {
                                 <td><div class="pt-1 px-10">${user.email}</div></td>
                                 <td><div class="pt-1 px-10">${user.permission}</div></td>
                                 <td style="width: 50px;">
-                                    <div><a href="/#/edituser/${user.id}" class="text-sm px-1 border border-gray-600 rounded-lg bg-blue-500 hover:bg-blue-700 text-white btn btn-primary"><i class="px-1 far fa-edit"></i></a></div>
+                                    <div><a href="/#/edituser/${user._id}" class="text-sm px-1 border border-gray-600 rounded-lg bg-blue-500 hover:bg-blue-700 text-white btn btn-primary"><i class="px-1 far fa-edit"></i></a></div>
                                 </td>
                                 <td>
-                                    <div><button class="text-sm px-1 border border-gray-600 rounded-lg bg-red-500 hover:bg-red-700 text-white btn btn-danger btn-remove" data-id="${user.id}"><i class="px-1 fas fa-trash-alt"></i></button></div>
+                                    <div><button class="text-sm px-1 border border-gray-600 rounded-lg bg-red-500 hover:bg-red-700 text-white btn btn-danger btn-remove" data-id="${user._id}"><i class="px-1 fas fa-trash-alt"></i></button></div>
                                 </td>
                             </tr>
                         `

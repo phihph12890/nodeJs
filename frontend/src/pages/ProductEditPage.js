@@ -16,11 +16,12 @@ const ProductEditPage = {
         const { data: product } = await productAPI.read(id);
         console.log(product);
 
-        const { data: categories } = await categoryAPI.listEdit(product.categoryId);
+        const { data: categories } = await categoryAPI.listRelated(product.category._id);
+        // const { data: categories } = await categoryAPI.list();
         console.log(categories);
         const resultCate = categories.map(categories => {
             return `
-                <option value="${categories.id}" >
+                <option value="${categories._id}" >
                     ${categories.name}
                 </option>
             `
@@ -44,11 +45,11 @@ const ProductEditPage = {
                             <div class="grid grid-cols-2 mt-4">
                                 <div class="ml-48">
                                     <div class="hidden">
-                                        <p>MÃ SẢN PHẨM</p> <input type="text" id="product_id" value ="${product.id}">
+                                        <p>MÃ SẢN PHẨM</p> <input type="text" id="product_id" value ="${product._id}">
                                     </div>
                                     <p class="font-semibold">DANH MỤC SẢN PHẨM</p>
                                     <select class="border border-blac px-2 form-control" id="product_category" style="width:465px;">
-                                        <option value="${product.categoryId}" >
+                                        <option value="${product.category._id}" >
                                             ${product.category.name}
                                         </option>
                                         ${resultCate}
@@ -132,9 +133,20 @@ const ProductEditPage = {
                 textarea_product_description.value = editor2.getData();
                 console.log(textarea_product_description.value);
                 if ($$("#product_image").files.length == 0) {
+                    // const newProduct = new FormData();
+                    // newProduct.append('category', $$("#product_category").value);
+                    // newProduct.append('name', $$("#product_name").value);
+                    // newProduct.append('image', `${product.image}`);
+                    // newProduct.append('price', $$("#product_price").value);
+                    // newProduct.append('priceSale', $$("#product_priceSale").value);
+                    // newProduct.append('guarantee', $$("#product_guarantee").value);
+                    // newProduct.append('quantity', $$("#product_quantity").value);
+                    // newProduct.append('config', textarea_product_config.value);
+                    // newProduct.append('description', textarea_product_description.value);
+
                     const newProduct = {
                         ...product,
-                        categoryId: $$("#product_category").value,
+                        category: $$("#product_category").value,
                         name: $$("#product_name").value,
                         image: `${product.image}`,
                         price: $$("#product_price").value,

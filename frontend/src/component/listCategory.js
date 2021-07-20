@@ -21,10 +21,10 @@ const listCategory = {
                                 <td scope="row"><div>${index + 1}</div></td>
                                 <td class="font-semibold"><div class="pt- px-32" style="width: 400px;">${category.name}</div></td>
                                 <td style="width: 50px;">
-                                    <div><a href="/#/editcategory/${category.id}" class="text-sm px-1 rounded-lg bg-blue-500 hover:bg-blue-700 text-white btn btn-primary"><i class="px-1 far fa-edit"></i></a></div>
+                                    <div><a href="/#/editcategory/${category._id}" class="text-sm px-1 rounded-lg bg-blue-500 hover:bg-blue-700 text-white btn btn-primary"><i class="px-1 far fa-edit"></i></a></div>
                                 </td>
                                 <td>
-                                    <div><button class="text-sm px-1 rounded-lg bg-red-500 hover:bg-red-700 text-white btn btn-danger btn-remove" data-id="${category.id}"><i class="px-1 fas fa-trash-alt"></i></button></div>
+                                    <div><button class="text-sm px-1 rounded-lg bg-red-500 hover:bg-red-700 text-white btn btn-danger btn-remove" data-id="${category._id}"><i class="px-1 fas fa-trash-alt"></i></button></div>
                                 </td>
                             </tr>
                         `
