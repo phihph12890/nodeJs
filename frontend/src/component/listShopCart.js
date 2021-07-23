@@ -15,7 +15,7 @@ const listShopCart = {
                 const SessionCart = () => {
                     if (isAuthenticated() == false) {
                         return `
-                            <button id="alertOder" class="btn btn-primary">Đặt hàng</button>
+                            <button id="alertOder" class="btn btn-danger">Đăng nhập để đặt hàng</button>
                         `
                     } else {
                         return `

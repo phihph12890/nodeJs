@@ -19,12 +19,23 @@ const listUser = {
                 </thead>
                 <tbody>
                     ${users.map((user, index) => {
-                        return `
+                        const permision = () => {
+                            if(user.permission == 0){
+                                return `
+                                    <p>Khách hàng</p>
+                                `
+                            } else {
+                                return `
+                                    <p>Admin</p>
+                                `
+                            }
+                        }
+                    return `
                             <tr>
                                 <td scope="row"><div>${index + 1}</div></td>
                                 <td><div class="pt-1 px-5" style="width: 200px">${user.name}</div></td>
                                 <td><div class="pt-1 px-10">${user.email}</div></td>
-                                <td><div class="pt-1 px-10">${user.permission}</div></td>
+                                <td><div class="pt-1 px-10">${permision()}</div></td>
                                 <td style="width: 50px;">
                                     <div><a href="/#/edituser/${user._id}" class="text-sm px-1 border border-gray-600 rounded-lg bg-blue-500 hover:bg-blue-700 text-white btn btn-primary"><i class="px-1 far fa-edit"></i></a></div>
                                 </td>
@@ -33,7 +44,7 @@ const listUser = {
                                 </td>
                             </tr>
                         `
-                    }).join('')}
+        }).join('')}
                 </tbody>
             </table>
         </div>
@@ -47,7 +58,7 @@ const listUser = {
             btn.addEventListener("click", async () => {
                 const { data: user } = await authAPI.read(id);
                 console.log(user);
-                if (user.permission == "admin") {
+                if (user.permission == 1) {
                     toast(
                         'Không thể xoá tài khoản của QUẢN TRỊ VIÊN!',
                         { duration: 2500 },

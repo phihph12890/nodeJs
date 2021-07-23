@@ -10,14 +10,14 @@ const ProductDetailPage = {
         const { id } = parseRequestUrl();
         const { data: product } = await productAPI.read(id);
 
-        const { data: relateProduct } = await productAPI.relateProduct(`${product.categoryId}`, id);
+        const { data: relateProduct } = await productAPI.relateProduct(id);
         const resultRelateProduct = relateProduct.map(relateProduct => {
             return `
             <div class="group bg-white overflow-hidden shadow-md text-center py-2">
                 <div class="py-2 transition duration-500 ease-in-out transform group-hover:scale-90">
-                    <a href=""><img class="mx-auto" src="${relateProduct.image}" alt="" width="70%"></a>
+                    <a href="/#/product/${relateProduct._id}"><img class="mx-auto" src="${relateProduct.image}" alt="" width="70%"></a>
                 </div>
-                <a class="hover:text-yellow-600" href=""><h4 class="text-sm px-2 pt-1 group-hover:text-yellow-600">${relateProduct.name}</h4></a>
+                <a class="hover:text-yellow-600" href="/#/product/${relateProduct._id}"><h4 class="text-sm px-2 pt-1 group-hover:text-yellow-600">${relateProduct.name}</h4></a>
                 <p class="text-red-500 text-lg font-bold pt-1  italic">${prices(Number(relateProduct.priceSale)).replace('VND', 'Đ')} <span class="text-gray-500 text-sm ml-2 font-bold pt-1  italic line-through">${prices(Number(relateProduct.price)).replace('VND', 'Đ')}</span></p>
                 <div class="transition duration-300 ease-in-out pt-2 transform translate-y-24 group-hover:-translate-y-0" >
                     <button class="bg-blue-500 text-white bg-black text-base rounded-md font-bold btn_addCart" data-id="${relateProduct.id}" style="padding: 6px 70px;">THÊM GIỎ HÀNG</button>

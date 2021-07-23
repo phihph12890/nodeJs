@@ -38,8 +38,8 @@ const UserEditPage = {
                             <div class=""style="margin-left:530px;">
                                 <p class=" mt-4 font-semibold"><i class="fas fa-user-shield mr-2"></i>Quyền hạn</p>
                                 <select id="permission" class="w-64 mt-2 h-10 rounded-md form-control" style="width:330px;">
-                                    <option value="customer">Khách hàng</option>
-                                    <option value="admin">Quản trị</option>
+                                    <option value="0">Khách hàng</option>
+                                    <option value="1">Quản trị</option>
                                 </select>
                             </div>
                             <div id="alert" class="mt-3 text-center mx-auto" style="width: 350px;" role="alert"></div>

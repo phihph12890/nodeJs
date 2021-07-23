@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
     salt: {
         type: String
     },
-    role: {
+    permission: {
         type: Number,
         default: 0
     },

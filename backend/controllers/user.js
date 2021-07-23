@@ -40,15 +40,34 @@ export const remove = (req, res) => {
         })
     })
 }
+// export const update = (req, res) => {
+//     const user = req.profile;
+//     user.name = req.body.name;
+//     user.save((err, data) => {
+//         if(err){
+//             return res.status(400).json({
+//                 error: "Cập nhật User không thành công!"
+//             })
+//         }
+//         res.json(data);
+//     })
+// }
+
 export const update = (req, res) => {
-    const user = req.profile;
-    user.name = req.body.name;
-    user.save((err, data) => {
-        if(err){
-            return res.status(400).json({
-                error: "Cập nhật User không thành công!"
-            })
+    console.log(req);
+    User.findOneAndUpdate(
+        { _id: req.profile.id },
+        { $set: req.body },
+        { new: true },
+        (err, user) => {
+            if (err) {
+                return res.status(400).json({
+                    error: 'You are not authorized to perform in action'
+                })
+            }
+            user.hashed_password = undefined;
+            user.salt = undefined;
+            res.json(user);
         }
-        res.json(data);
-    })
+    )
 }

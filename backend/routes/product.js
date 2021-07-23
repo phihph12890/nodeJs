@@ -1,5 +1,5 @@
 import express from 'express';
-import { list, read, create, update, remove, productById, productByCategory } from '../controllers/product'
+import { list, read, create, update, remove, productById, productByCategory, relateProduct } from '../controllers/product'
 import { categoryById } from '../controllers/category';
 
 const router = express.Router();
@@ -8,6 +8,8 @@ const router = express.Router();
 router.get('/products', list);
 //Danh sách sản phẩm theo danh mục
 router.get('/products/categories/:categoryId', productByCategory);
+//Sản phẩm liên quan
+router.get('/products/related/:productId', relateProduct);
 //Chi tiết sản phẩm
 router.get('/products/:productId', read);
 //Thêm mới sản phẩm 

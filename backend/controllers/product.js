@@ -156,3 +156,21 @@ export const productByCategory = (req, res) => {
         res.json(products);
     })
 }
+export const relateProduct = (req, res) => {
+    let limit = req.query.limit ? req.query.limit : 4;
+
+    Product.find({
+        _id: { $ne: req.product },
+        category: req.product.category
+    }) // $ne: not include
+        .limit(limit)
+        .populate('category', '_id name',)
+        .exec((err, products) => {
+            if (err) {
+                res.status(400).json({
+                    error: "Products not found"
+                })
+            }
+            res.json(products)
+        })
+}

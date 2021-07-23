@@ -41,8 +41,8 @@ const UserAddPage = {
                             <div class="text-center mt-3">
                                 <p class=" mt-5 font-semibold"><i class="fas fa-user-shield mr-2"></i>Quyền hạn</p>
                                 <select id="permission" class="w-64 mt-3 h-8 rounded-md">
-                                    <option value="customer">Khách hàng</option>
-                                    <option value="admin">Quản trị</option>
+                                    <option value="0">Khách hàng</option>
+                                    <option value="1">Quản trị</option>
                                 </select>
                             </div>
                             <div id="alert" class="mt-3 text-center mx-auto" style="width: 350px;" role="alert"></div>

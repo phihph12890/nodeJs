@@ -55,7 +55,7 @@ const SignupPage = {
                     name: $$('#fullname').value,
                     email: $$('#email').value,
                     password: $$('#password').value,
-                    // permission: "customer"
+                    permission: 0,
                 }
                 console.log(newUser);
                 if ($$('#password').value == $$('#repassword').value) {

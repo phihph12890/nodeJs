@@ -23,8 +23,8 @@ const authAPI = {
         return axiosClient.delete(url);
     },
     update(id, data) {
-        const url = `http://localhost:3001/users/${id}`;
-        return axios.put(url, data);
+        const url = `/users/${id}`;
+        return axiosClient.put(url, data);
     },
     read(id) {
         console.log(id);

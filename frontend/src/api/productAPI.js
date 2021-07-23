@@ -17,8 +17,8 @@ export const productAPI = {
         const url = `/products/${id}`;
         return axiosClient.get(url);
     },
-    relateProduct(categoryId, id) {
-        const url = `/products?categoryId=${categoryId}&id_ne=${id}&_limit=4`;
+    relateProduct(id) {
+        const url = `/products/related/${id}`;
         return axiosClient.get(url);
     },
     add(product) {
