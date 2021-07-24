@@ -16,7 +16,7 @@ const orderDetail = {
                         <p class="mt-3"><span class="font-semibold">Địa chỉ:</span> <span>${order.address}</span></p>
                         <p class="mt-3"><span class="font-semibold">SDT:</span> <span>${order.phoneNumber}</span></p>
                         <p class="mt-3"><span class="font-semibold">Email:</span> <span>${order.email}</span></p>
-                        <p class="mt-3"><span class="font-semibold">Ngày đặt:</span> <span>${order.create_at}</span></p>
+                        <p class="mt-3"><span class="font-semibold">Ngày đặt:</span> <span>${order.createdAt.split('T')[0]}</span></p>
                         <p class="mt-3"><span class="font-semibold">Số sản phẩm:</span> <span>${order.cartNumber}</span></p>
                         <p class="mt-3"><span class="font-semibold">Tổng tiền:</span> <span>${prices(order.totalPrice).replace('VND', 'Đ')}</span></p>
                         <p class="mt-3"><span class="font-semibold">Trạng thái:</span> <span>${order.status}</span></p>

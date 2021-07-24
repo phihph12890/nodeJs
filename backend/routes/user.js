@@ -7,7 +7,7 @@ const router = express.Router();
 //Danh sách User
 router.get('/users', list);
 //Thông tin User
-router.get('/users/:userId',read)
+router.get('/users/:userId', read)
 //Xoá User
 router.delete('/users/:userId',remove)
 //Sửa User

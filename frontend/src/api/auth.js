@@ -27,7 +27,6 @@ const authAPI = {
         return axiosClient.put(url, data);
     },
     read(id) {
-        console.log(id);
         const url = `/users/${id}`;
         return axiosClient.get(url);
     },

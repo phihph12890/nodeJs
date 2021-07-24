@@ -69,7 +69,7 @@ export const clickLogout = () => {
         }
     }
 }
-export const addToCart = (id, name, image, price, cateId, cate_name) => {
+export const addToCart = (id, name, image, price, cate_id, cate_name) => {
     let cartStorage = localStorage.getItem('cart');
     let screenCart = null;
     if (cartStorage == null) {
@@ -84,7 +84,7 @@ export const addToCart = (id, name, image, price, cateId, cate_name) => {
         name: name,
         image: image,
         price: price,
-        cateId: cateId,
+        cate_id: cate_id,
         cate_name: cate_name
     };
 

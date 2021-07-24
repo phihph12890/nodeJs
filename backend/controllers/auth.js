@@ -93,11 +93,11 @@ export const signout = (req, res) => {
         message: 'Đăng xuất thành công'
     })
 }
-// export const requireSignin = expressJwt({
-//     secret: process.env.JWT_SECRET,
-//     algorithm: ["HS256"],
-//     useProperty: "auth"
-// })
+export const requireSignin = expressJwt({
+    secret: 'jwtabcxyz',
+    algorithms: ["HS256"],
+    useProperty: "auth"
+})
 export const isAuth = (req, res) => {
     let user = req.profile && req.auth && req.profile._id == req.auth._id;
     if (!user) {

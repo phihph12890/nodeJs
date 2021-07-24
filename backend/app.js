@@ -4,7 +4,8 @@ import mongoose from 'mongoose';
 import productRoutes from './routes/product';
 import categoryRoutes from './routes/category';
 import authRoutes from './routes/auth';
-import userRouters from './routes/user'
+import userRouters from './routes/user';
+import orderRouters from './routes/order';
 import cors from 'cors';
 
 //Config
@@ -33,6 +34,7 @@ app.use('/api', productRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', authRoutes);
 app.use('/api', userRouters);
+app.use('/api', orderRouters);
 
 
 const port = process.env.PORT || 8000;

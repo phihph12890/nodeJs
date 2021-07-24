@@ -5,8 +5,8 @@ export const orderAPI = {
         const url = `/orders`;
         return axiosClient.get(url);
     },
-    read(id) {
-        const url = `/orders?userId=${id}`;
+    orderByUser(id) {
+        const url = `/orders/users/${id}`;
         return axiosClient.get(url);
     },
     get(id) {

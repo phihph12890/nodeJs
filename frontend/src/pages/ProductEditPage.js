@@ -111,7 +111,7 @@ const ProductEditPage = {
             .then(description => window.editor2 = description)
             .catch(error => console.log(error))
 
-        $$('#form_editProduct').addEventListener("submit", function (e) {
+        $$('#form_editProduct').addEventListener("submit", async function (e) {
             e.preventDefault();
 
             var sumCheck = 0;
@@ -158,14 +158,14 @@ const ProductEditPage = {
                     }
                     console.log("old", product);
                     console.log("new", newProduct);
-                    productAPI.update(id, newProduct);
-                    reRender(listProduct, '#list-products');
+                    await productAPI.update(id, newProduct);
+                    await reRender(listProduct, '#list-products');
                     window.location.hash = '/listproduct';
                 } else {
                     const productImage = $$("#product_image").files[0];
                     let storageRef = firebase.storage().ref(`images/${productImage.name}`);
                     storageRef.put(productImage).then(function () {
-                        storageRef.getDownloadURL().then((url) => {
+                        storageRef.getDownloadURL().then(async (url) => {
                             const newProduct = {
                                 ...product,
                                 categoryId: $$("#product_category").value,
@@ -180,8 +180,8 @@ const ProductEditPage = {
                             }
                             console.log("old", product);
                             console.log("new", newProduct);
-                            productAPI.update(id, newProduct);
-                            reRender(listProduct, '#list-products');
+                            await productAPI.update(id, newProduct);
+                            await reRender(listProduct, '#list-products');
                             window.location.hash = '/listproduct';
                         })
                     })

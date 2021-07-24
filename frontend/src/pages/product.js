@@ -138,7 +138,7 @@ const ProductPage = {
                 btn.addEventListener("click", async () => {
                     console.log(btn_id);
                     var { data: products } = await productAPI.read(btn_id);
-                    addToCart(`${products.id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.categoryId}`, `${products.category.name}`);
+                    addToCart(`${products._id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.category._id}`, `${products.category.name}`);
                     getTotalItemOnCart();
                     onLoadCartNumber();
                 })
@@ -148,7 +148,7 @@ const ProductPage = {
             btns.addEventListener("click", async () => {
                 console.log(btn_id);
                 var { data: products } = await productAPI.read(btn_id);
-                addToCart(`${products.id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.categoryId}`, `${products.category.name}`);
+                addToCart(`${products._id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.category._id}`, `${products.category.name}`);
                 getTotalItemOnCart();
                 onLoadCartNumber();
             })

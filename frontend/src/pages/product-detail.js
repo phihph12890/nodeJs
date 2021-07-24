@@ -20,7 +20,7 @@ const ProductDetailPage = {
                 <a class="hover:text-yellow-600" href="/#/product/${relateProduct._id}"><h4 class="text-sm px-2 pt-1 group-hover:text-yellow-600">${relateProduct.name}</h4></a>
                 <p class="text-red-500 text-lg font-bold pt-1  italic">${prices(Number(relateProduct.priceSale)).replace('VND', 'Đ')} <span class="text-gray-500 text-sm ml-2 font-bold pt-1  italic line-through">${prices(Number(relateProduct.price)).replace('VND', 'Đ')}</span></p>
                 <div class="transition duration-300 ease-in-out pt-2 transform translate-y-24 group-hover:-translate-y-0" >
-                    <button class="bg-blue-500 text-white bg-black text-base rounded-md font-bold btn_addCart" data-id="${relateProduct.id}" style="padding: 6px 70px;">THÊM GIỎ HÀNG</button>
+                    <button class="bg-blue-500 text-white bg-black text-base rounded-md font-bold btn_addCart" data-id="${relateProduct._id}" style="padding: 6px 70px;">THÊM GIỎ HÀNG</button>
                 </div>
             </div>
             <hr class="">
@@ -56,7 +56,7 @@ const ProductDetailPage = {
                 return `
                     <div class="mt-4">
                         <div class="bg-red-500 rounded-lg text-center mt-3" style="width: 430px;">
-                            <button data-id="${product.id}" class="btn_addCart" style="padding: 0 100px;">
+                            <button data-id="${product._id}" class="btn_addCart" style="padding: 0 100px;">
                                 <p class="text-white font-bold text-lg pt-1">Thêm vào giỏ hàng</p>
                                 <p class="text-white font-semibold text-sm mt-1 pb-2">Giao tận nơi hoặc nhận ở cửa hàng</p>
                             </button>
@@ -217,7 +217,7 @@ const ProductDetailPage = {
             btn.addEventListener("click", async () => {
                 console.log(btn_id);
                 var { data: products } = await productAPI.read(btn_id);
-                addToCart(`${products.id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.categoryId}`, `${products.category.name}`);
+                addToCart(`${products._id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.categoryId}`, `${products.category.name}`);
                 getTotalItemOnCart();
                 onLoadCartNumber();
             })

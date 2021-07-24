@@ -4,8 +4,8 @@ import toast from 'toast-me';
 
 const listOrder = {
     async render() {
-        const userId = parseInt(isAuthenticated().sub);
-        const { data: orders } = await orderAPI.read(userId);
+        const userId = isAuthenticated()._id;
+        const { data: orders } = await orderAPI.orderByUser(userId);
         console.log(orders);
         const result = orders.map((item, index) => {
             return `
@@ -14,16 +14,16 @@ const listOrder = {
                     <td><span class="px-2">${item.name}</span></td>   
                     <td><span>${item.phoneNumber}</span></td>
                     <td><span>${prices(item.totalPrice).replace('VND', 'Đ')}</span></td>
-                    <td><span>${item.create_at}</span></td>
+                    <td><span>${item.createdAt.split('T')[0]}</span></td>
                     <td><span>${item.status}</span><span class="checkStatus"></span></td>
                     <td>
-                        <a href="/#/orderdetail/${item.id}">
-                            <button class="text-sm px-2 border border-gray-600 rounded-lg text-white btn btn-primary" data-id="${item.id}">
+                        <a href="/#/orderdetail/${item._id}">
+                            <button class="text-sm px-2 border border-gray-600 rounded-lg text-white btn btn-primary" data-id="${item._id}">
                                 <i class="fas fa-info-circle"></i>
                             </button>
                         </a>
                     </td>
-                    <td><div><button class="text-sm px-1 border border-gray-600 rounded-lg text-white btn btn-danger btn-remove" data-id="${item.id}">Del</button></div></td>
+                    <td><div><button class="text-sm px-1 border border-gray-600 rounded-lg text-white btn btn-danger btn-remove" data-id="${item._id}">Del</button></div></td>
                 </tr>
             `
         }).join('');
@@ -56,8 +56,9 @@ const listOrder = {
         }
     },
     async afterRender() {
-        const userId = parseInt(isAuthenticated().sub);
-        const { data: orders } = await orderAPI.read(userId);
+        const userId = isAuthenticated()._id;
+        console.log(userId);
+        const { data: orders } = await orderAPI.orderByUser(userId);
         console.log(orders);
         const checkStatus = $$(".checkStatus");
         if (checkStatus.length >= 2) {

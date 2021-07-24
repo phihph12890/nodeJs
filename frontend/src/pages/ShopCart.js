@@ -89,8 +89,9 @@ const ShopCartPage = {
         clickLogout();
         productSearch();
 
-        const userId = parseInt(isAuthenticated().sub);
-        const { data: user } = authAPI.read(userId);
+        const userId = isAuthenticated()._id;
+        console.log(userId);
+        let { data: user } = authAPI.read(userId);
         console.log(user);
         var cartStorage = localStorage.getItem('cart');
         cartStorage = JSON.parse(cartStorage);
@@ -106,7 +107,7 @@ const ShopCartPage = {
             reRender(listShopCart, "#list_cart");
             onLoadCartNumber();
             reRender(ShopCartPage);
-            
+
         })
         $$("#form_addOder").addEventListener("submit", e => {
             e.preventDefault();
@@ -137,7 +138,7 @@ const ShopCartPage = {
                     totalPriceStorage = Number(totalPriceStorage);
                     console.log(totalPriceStorage);
                     const order = {
-                        userId: userId,
+                        user: userId,
                         name: $$("#fullname").value,
                         address: $$("#address").value,
                         phoneNumber: $$("#phoneNumber").value,

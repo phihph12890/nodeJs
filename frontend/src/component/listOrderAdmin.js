@@ -5,6 +5,7 @@ import toast from 'toast-me';
 const listOrderAdmin = {
     async render() {
         const { data: orders } = await orderAPI.list();
+        console.log(orders);
         const result = orders.map((item, index) => {
             return `
                 <tr class="text-center">
@@ -12,19 +13,19 @@ const listOrderAdmin = {
                     <td><span>${item.name}</span></td>   
                     <td><span>${item.phoneNumber}</span></td>
                     <td><span>${prices(item.totalPrice).replace('VND', 'Đ')}</span></td>
-                    <td><span>${item.create_at}</span></td>
+                    <td><span>${item.createdAt.split('T')[0]}</span></td>
                     <td>
                         <span>${item.status}</span> <span class="checkStatus"></span>
-                        <a href="/#/editorder/${item.id}"><button class="text-sm px-2 border border-gray-600 rounded-lg text-white btn btn-dark" data-id="${item.id}"><i class="fas fa-edit"></i></button></a>
+                        <a href="/#/editorder/${item._id}"><button class="text-sm px-2 border border-gray-600 rounded-lg text-white btn btn-dark" data-id="${item._id}"><i class="fas fa-edit"></i></button></a>
                     </td>
                     <td>
-                        <a href = "/#/orderdetailadmin/${item.id}">
-                            <button class="text-sm px-2 border border-gray-600 rounded-lg text-white btn btn-primary btn-in4" data-id="${item.id}">
+                        <a href = "/#/orderdetailadmin/${item._id}">
+                            <button class="text-sm px-2 border border-gray-600 rounded-lg text-white btn btn-primary btn-in4" data-id="${item._id}">
                                 <i class="fas fa-info-circle"></i>
                             </button>
                         </a>
                     </td>
-                    <td><div><button class="text-sm px-1 border border-gray-600 rounded-lg text-white btn btn-danger btn-remove" data-id="${item.id}"><i class="px-1 fas fa-trash-alt"></i></button></div></td>
+                    <td><div><button class="text-sm px-1 border border-gray-600 rounded-lg text-white btn btn-danger btn-remove" data-id="${item._id}"><i class="px-1 fas fa-trash-alt"></i></button></div></td>
                 </tr>   
             `
         }).join('');
@@ -38,13 +39,13 @@ const listOrderAdmin = {
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                        <th scope="col">STT</th>
-                        <th scope="col">Họ và tên</th>
-                        <th scope="col">Số điện thoại</th>
-                        <th scope="col">Tổng tiền</th>
-                        <th scope="col">Ngày đặt hàng</th>
-                        <th scope="col">Trạng thái</th>
-                        <th colspan="2" scope="col" >Tuỳ chọn</th>
+                            <th scope="col">STT</th>
+                            <th scope="col">Họ và tên</th>
+                            <th scope="col">Số điện thoại</th>
+                            <th scope="col">Tổng tiền</th>
+                            <th scope="col">Ngày đặt hàng</th>
+                            <th scope="col">Trạng thái</th>
+                            <th colspan="2" scope="col" >Tuỳ chọn</th>
                         </tr>
                     </thead>
                     <tbody id="showListOrder">
