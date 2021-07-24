@@ -42,7 +42,9 @@ const SigninPage = {
             authAPI.signin(JSON.stringify(user))
                 .then(({data}) => {
                     console.log("Token: ", data.token);
+                    localStorage.setItem('token', JSON.stringify(data.token))
                     authenticated(data.token);
+                    
                 })
                 .then(() => {
                     toast(

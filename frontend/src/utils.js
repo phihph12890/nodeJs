@@ -36,6 +36,7 @@ export const prices = (x) => {
         currency: 'VND'
     });
 }
+// export const setAuthentication = ()
 export const authenticated = ( accessToken ) => {
     const user = jwt_decode(accessToken);
     if (typeof window !== 'undefined') {

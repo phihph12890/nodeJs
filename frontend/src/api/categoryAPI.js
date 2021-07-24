@@ -14,8 +14,8 @@ export const categoryAPI = {
         const url = `/categories/related/${id}`;
         return axiosClient.get(url);
     },
-    add(category) {
-        const url = `/categories`;
+    add(category, userId) {
+        const url = `/categories/${userId}`;
         return axiosClient.post(url, category);
     },
     update(id, data) {

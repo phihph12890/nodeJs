@@ -74,7 +74,7 @@ export const signin = (req, res) => {
             })
         }
         // Tự động tạo ra một mã cùng với user và mã secret
-        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+        const token = jwt.sign({ _id: user._id }, "abc11");
         // persist the token as 't' in cookie with  
         res.cookie('t', token, { expire: new Date() + 9999 });
         // return response with user and token to frontend client
@@ -94,12 +94,17 @@ export const signout = (req, res) => {
     })
 }
 export const requireSignin = expressJwt({
-    secret: 'jwtabcxyz',
+    secret: "abc11",
     algorithms: ["HS256"],
-    useProperty: "auth"
+    userProperty: "auth",
 })
-export const isAuth = (req, res) => {
+export const isAuth = (req, res, next) => {
+    console.log(req.profile);
+    console.log(req.auth);
+    // console.log(req.profile._id);
+    // console.log(req.auth._id);
     let user = req.profile && req.auth && req.profile._id == req.auth._id;
+    console.log(user);
     if (!user) {
         return res.status(403).json({
             error: "Từ chối quyền truy cập!"
@@ -108,7 +113,7 @@ export const isAuth = (req, res) => {
     next();
 }
 export const isAdmin = (req, res, next) => {
-    if (req.profile.role == 0) {
+    if (req.profile.permission == 0) {
         return res.status(403).json({
             error: "Không phải ADMIN, từ chối quyền truy cập!"
         })

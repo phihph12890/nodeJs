@@ -48,6 +48,8 @@ const CategoryAddPage = {
         clickLogout();
         const { data: categories } = await categoryAPI.list();
         console.log(categories);
+        let { _id: userId } = localStorage.getItem('user');
+        console.log(userId);
         $$("#form_addCategory").addEventListener("submit", e => {
             e.preventDefault();
 
@@ -67,14 +69,16 @@ const CategoryAddPage = {
                     check += 1;
                 }
             });
-            
+
             if (sumCheck === 0) {
                 if (check === 0) {
                     const category = {
                         id: uuidv4(),
                         name: $$("#category_name").value,
                     }
-                    categoryAPI.add(category);
+                    let {_id} =  JSON.parse(localStorage.getItem('user'));
+
+                    categoryAPI.add(category,_id);
                     reRender(listCategory, '#list-categories');
                     window.location.hash = '/listcategory';
                 } else {
