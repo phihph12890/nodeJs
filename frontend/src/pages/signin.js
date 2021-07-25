@@ -40,11 +40,13 @@ const SigninPage = {
             }
             // console.log(JSON.stringify(user));
             authAPI.signin(JSON.stringify(user))
-                .then(({data}) => {
-                    console.log("Token: ", data.token);
+                .then(({ data }) => {
+                    console.log("Data: ", data);
                     localStorage.setItem('token', JSON.stringify(data.token))
-                    authenticated(data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user))
+                    // authenticated(data);
                     
+
                 })
                 .then(() => {
                     toast(
@@ -56,7 +58,7 @@ const SigninPage = {
                             class: 'my-custom-class', // optional, CSS class name for action button
                         },
                     );
-                    window.location.hash = '/';
+                    window.location = '/';
 
                 })
                 .catch(error => {

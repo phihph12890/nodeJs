@@ -36,7 +36,7 @@ export const prices = (x) => {
         currency: 'VND'
     });
 }
-// export const setAuthentication = ()
+
 export const authenticated = ( accessToken ) => {
     const user = jwt_decode(accessToken);
     if (typeof window !== 'undefined') {
@@ -62,6 +62,7 @@ export const clickLogout = () => {
     if (document.querySelector('#logout') != undefined) {
         document.querySelector('#logout').onclick = () => {
             logout();
+            localStorage.removeItem('token')
             localStorage.removeItem('cartNumber');
             localStorage.removeItem('cart');
             localStorage.removeItem('totalPrice');

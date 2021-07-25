@@ -174,3 +174,17 @@ export const relateProduct = (req, res) => {
             res.json(products)
         })
 }
+export const search = (req, res) => {
+    let name_like = req.query.name_like ? req.query.name_like : "";
+    // console.log(name_like);
+    Product.find({
+        "name": { $regex: `${name_like}`, $options: '$i'  }
+    }).exec((err, products) => {
+        if (err) {
+            res.status(400).json({
+                error: "Product not found"
+            })
+        }
+        res.json(products)
+    })
+}

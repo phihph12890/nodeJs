@@ -1,9 +1,10 @@
 import express from 'express';
-import { list, read, create, update, remove, productById, productByCategory, relateProduct } from '../controllers/product'
+import { list, read, create, update, remove, productById, productByCategory, relateProduct, search } from '../controllers/product'
 import { categoryById } from '../controllers/category';
 
 const router = express.Router();
-
+//Tìm kiếm sản phẩm
+router.get('/products/search', search)
 //Danh sách sản phẩm
 router.get('/products', list);
 //Danh sách sản phẩm theo danh mục
@@ -18,6 +19,7 @@ router.post('/products', create);
 router.put('/products/:productId', update);
 //Xoá sản phẩm
 router.delete('/products/:productId', remove);
+
 //Lấy param
 router.param('categoryId', categoryById);
 router.param('productId', productById);

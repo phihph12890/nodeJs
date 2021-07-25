@@ -34,7 +34,7 @@ export const productAPI = {
         return axiosClient.delete(url);
     },
     search(textSearch) {
-        const url = `/products?name_like=${textSearch}`;
+        const url = `/products/search?name_like=${textSearch}`;
         return axiosClient.get(url);
     },
     filterPrice(price1, price2) {

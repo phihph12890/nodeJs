@@ -76,11 +76,24 @@ const CategoryAddPage = {
                         id: uuidv4(),
                         name: $$("#category_name").value,
                     }
-                    let {_id} =  JSON.parse(localStorage.getItem('user'));
+                    let { _id: userId } = JSON.parse(localStorage.getItem('user'));
 
-                    categoryAPI.add(category,_id);
-                    reRender(listCategory, '#list-categories');
-                    window.location.hash = '/listcategory';
+                    categoryAPI.add(category, userId)
+                        .then(() => {
+                            reRender(listCategory, '#list-categories');
+                            window.location.hash = '/listcategory';
+                        })
+                        .catch(error => {
+                            toast(  
+                                `${error.response.data.error}`,
+                                { duration: 2500 },
+                                {
+                                    // label: 'Confirm',
+                                    action: () => alert('Cool!'),
+                                    class: 'my-custom-class', // optional, CSS class name for action button
+                                },
+                            );
+                        })
                 } else {
                     errorValidate.innerHTML = "Tên danh mục đã tồn tại";
                 }
