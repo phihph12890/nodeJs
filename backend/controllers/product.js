@@ -178,11 +178,42 @@ export const search = (req, res) => {
     let name_like = req.query.name_like ? req.query.name_like : "";
     // console.log(name_like);
     Product.find({
-        "name": { $regex: `${name_like}`, $options: '$i'  }
+        "name": { $regex: `${name_like}`, $options: '$i' }
     }).exec((err, products) => {
         if (err) {
             res.status(400).json({
                 error: "Product not found"
+            })
+        }
+        res.json(products)
+    })
+}
+export const filterPrice = (req, res) => {
+    let price1 = req.query.price1 ? req.query.price1 : "";
+    let price2 = req.query.price2 ? req.query.price2 : "";
+    // console.log("price1", price1);
+    // console.log("price2", price2);
+    Product.find({
+        $and: [{ 'priceSale': { $gte: price1 } }, { 'priceSale': { $lte: price2 } }]
+    }).exec((err, products) => {
+        if (err) {
+            res.status(400).json({
+                error: "Product not found"
+            })
+        }
+        res.json(products)
+    })
+}
+export const sortPrice = (req, res) => {
+    let level = req.query.level ? req.query.level : "";
+    Product.find()
+        .sort({
+            priceSale: level
+        })
+        .exec((err, products) => {
+        if (err) {
+            res.status(400).json({
+                error: "Failed"
             })
         }
         res.json(products)

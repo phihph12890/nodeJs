@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 //Danh sách danh mục
-router.get('/categories/', list);
+router.get('/categories', list);
 //Chi tiết danh mục
 router.get('/categories/:categoryId', read);
 //Thêm mới danh mục

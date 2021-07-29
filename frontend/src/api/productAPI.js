@@ -38,11 +38,11 @@ export const productAPI = {
         return axiosClient.get(url);
     },
     filterPrice(price1, price2) {
-        const url = `/products?priceSale_gte=${price1}&priceSale_lte=${price2}`;
+        const url = `/products/filterPrice?price1=${price1}&price2=${price2}`;
         return axiosClient.get(url);
     },
     sortPrice(level) {
-        const url = `/products?_sort=priceSale&_order=${level}`;
+        const url = `/products/sortPrice?level=${level}`;
         return axiosClient.get(url);
     },
 

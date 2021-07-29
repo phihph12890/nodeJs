@@ -1,10 +1,14 @@
 import express from 'express';
-import { list, read, create, update, remove, productById, productByCategory, relateProduct, search } from '../controllers/product'
+import { list, read, create, update, remove, productById, productByCategory, relateProduct, search, filterPrice, sortPrice } from '../controllers/product'
 import { categoryById } from '../controllers/category';
 
 const router = express.Router();
 //Tìm kiếm sản phẩm
-router.get('/products/search', search)
+router.get('/products/search', search);
+//Lọc theo giá
+router.get('/products/filterPrice', filterPrice);
+//Sắp xếp theo giá
+router.get('/products/sortPrice', sortPrice);
 //Danh sách sản phẩm
 router.get('/products', list);
 //Danh sách sản phẩm theo danh mục

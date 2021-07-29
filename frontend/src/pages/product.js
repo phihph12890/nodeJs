@@ -6,7 +6,7 @@ import productAPI from '../api/productAPI';
 import categories from '../component/categories';
 import Cart from '../component/Cart';
 import toast from 'toast-me';
-
+import showListProducts from '../component/showListProducts';
 
 const ProductPage = {
     async render() {
