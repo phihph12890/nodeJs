@@ -33,7 +33,7 @@ const ProductPage = {
             return `
                     ${await header.render()}
                     ${banner.render()}
-                    <div class="content bg-gray-100 pb-8 pt-3" id="content">
+                    <div class="content bg-gray-100 pb-8" id="content">
                         <div class=" mx-auto grid grid-cols-4 gap-8" style="width:1200px;">
                             <aside class="col-span-1 bg-gray-100">
                                 ${await categories.render()}

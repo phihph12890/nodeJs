@@ -1,14 +1,14 @@
 const banner = {
     render() {
         return /*html */ `
-        <div class="banner bg-gray-100 pb-1">
+        <div class=" bg-gray-100 pb-1">
             <div class=" mx-auto grid grid-cols-3 gap-1" style="max-width: 1200px;">
                 <div class="col-span-2 owl-carousel owl-theme ">
-                        <div><a href=""><img class="w-full" src="https://laptopaz.vn/media/banner/14_Janadd89f1d11115d78811de33406e3f4e9.jpg" alt=""></a></div>
-                        <div><a href=""><img class="w-full" src="https://laptopaz.vn/media/banner/23_Oct14dbe0b28fc425dfdeb57b0f33603829.jpg" alt=""></a></div>
-                        <div><a href=""><img class="w-full" src="https://laptopaz.vn/media/banner/23_Oct463b04470134f2ba268f6b39116cec12.jpg" alt=""></a></div>
-                        <div><a href=""><img class="w-full" src="https://laptopaz.vn/media/banner/23_Oct16ae286a90b51ad9409ba4be7e8564cd.jpg" alt=""></a></div>
-                        <div><a href=""><img class="w-full" src="https://laptopaz.vn/media/banner/23_Oct14d3c7e6c851cc0812b0760b9ad08427.jpg" alt=""></a></div>
+                    <div><a href=""><img class="w-full" src="https://laptopaz.vn/media/banner/14_Janadd89f1d11115d78811de33406e3f4e9.jpg" alt=""></a></div>
+                    <div><a href=""><img class="w-full" src="https://laptopaz.vn/media/banner/23_Oct14dbe0b28fc425dfdeb57b0f33603829.jpg" alt=""></a></div>
+                    <div><a href=""><img class="w-full" src="https://laptopaz.vn/media/banner/23_Oct463b04470134f2ba268f6b39116cec12.jpg" alt=""></a></div>
+                    <div><a href=""><img class="w-full" src="https://laptopaz.vn/media/banner/23_Oct16ae286a90b51ad9409ba4be7e8564cd.jpg" alt=""></a></div>
+                    <div><a href=""><img class="w-full" src="https://laptopaz.vn/media/banner/23_Oct14d3c7e6c851cc0812b0760b9ad08427.jpg" alt=""></a></div>
                 </div>
                 <div class="col-span-1">
                     <div>

@@ -9,7 +9,7 @@ const listShopCart = {
             if (productOnCart == null) {
                 return `
                     <div class="text-center text-4xl font-semibold pt-32 pb-4">Bạn chưa thêm sản phẩm nào vào giỏ hàng <i class="far fa-frown"></i></div>
-                    <div class="text-center mb-32"><a href="/" class="btn btn-primary">Mua ngay</a></div>
+                    <div class="text-center mb-32"><a href="/" class="btn btn-primary">Trang chủ</a></div>
                 `
             } else {
                 const SessionCart = () => {

@@ -88,8 +88,7 @@ const ShopCartPage = {
     async afterRender() {
         clickLogout();
         productSearch();
-        getTotalItemOnCart();
-        onLoadCartNumber();
+        
 
         const userId = isAuthenticated()._id;
         console.log(userId);
