@@ -64,7 +64,7 @@ const routes = {
 const router = async () => {
     const { resource, id } = parseRequestUrl();
     const parseUrl = (resource ? `/${resource}` : '/') + (id ? `/:id` : '');
-    console.log(parseUrl);
+    console.log('parseUrl -----'+parseUrl);
     const page = routes[parseUrl] ? routes[parseUrl] : Error404Page;
     // console.log(routes[parseUrl].render());
     document.querySelector('#content').innerHTML = await page.render();

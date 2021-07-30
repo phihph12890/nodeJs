@@ -33,7 +33,7 @@ const ProductPage = {
             return `
                     ${await header.render()}
                     ${banner.render()}
-                    <div class="content bg-gray-100 pb-8" id="content">
+                    <div class="content bg-gray-100 pb-8 pt-3" id="content">
                         <div class=" mx-auto grid grid-cols-4 gap-8" style="width:1200px;">
                             <aside class="col-span-1 bg-gray-100">
                                 ${await categories.render()}
@@ -101,6 +101,30 @@ const ProductPage = {
                 `
             }).join('');
             $$("#list_product").innerHTML = resultSort;
+            
+            const btns = $$(".btn_addCart");
+            console.log(btns);
+            if (btns.length > 1) {
+                btns.forEach(async (btn) => {
+                    var btn_id = btn.dataset.id;
+                    btn.addEventListener("click", async () => {
+                        console.log(btn_id);
+                        var { data: products } = await productAPI.read(btn_id);
+                        addToCart(`${products._id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.category._id}`, `${products.category.name}`);
+                        getTotalItemOnCart();
+                        onLoadCartNumber();
+                    })
+                })
+            } else {
+                var btn_id = btns.dataset.id;
+                btns.addEventListener("click", async () => {
+                    console.log(btn_id);
+                    var { data: products } = await productAPI.read(btn_id);
+                    addToCart(`${products._id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.category._id}`, `${products.category.name}`);
+                    getTotalItemOnCart();
+                    onLoadCartNumber();
+                })
+            }
         })
 
         var filter = $$("#filter");
@@ -130,8 +154,33 @@ const ProductPage = {
                 `
             }).join('');
             $$("#list_product").innerHTML = resultFilter;
+
+            const btns = $$(".btn_addCart");
+            console.log(btns);
+            if (btns.length > 1) {
+                btns.forEach(async (btn) => {
+                    var btn_id = btn.dataset.id;
+                    btn.addEventListener("click", async () => {
+                        console.log(btn_id);
+                        var { data: products } = await productAPI.read(btn_id);
+                        addToCart(`${products._id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.category._id}`, `${products.category.name}`);
+                        getTotalItemOnCart();
+                        onLoadCartNumber();
+                    })
+                })
+            } else {
+                var btn_id = btns.dataset.id;
+                btns.addEventListener("click", async () => {
+                    console.log(btn_id);
+                    var { data: products } = await productAPI.read(btn_id);
+                    addToCart(`${products._id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.category._id}`, `${products.category.name}`);
+                    getTotalItemOnCart();
+                    onLoadCartNumber();
+                })
+            }
         })
         const btns = $$(".btn_addCart");
+        console.log(btns);
         if (btns.length > 1) {
             btns.forEach(async (btn) => {
                 var btn_id = btn.dataset.id;
