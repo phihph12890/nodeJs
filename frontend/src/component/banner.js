@@ -1,7 +1,7 @@
 const banner = {
     render() {
         return /*html */ `
-        <div class=" bg-gray-100 pb-1">
+        <div class="bg-gray-100 pb-1">
             <div class=" mx-auto grid grid-cols-3 gap-1" style="max-width: 1200px;">
                 <div class="col-span-2 owl-carousel owl-theme ">
                     <div><a href=""><img class="w-full" src="https://laptopaz.vn/media/banner/14_Janadd89f1d11115d78811de33406e3f4e9.jpg" alt=""></a></div>
@@ -23,4 +23,4 @@ const banner = {
         `
     }
 }
-export default banner;
+export default banner; 

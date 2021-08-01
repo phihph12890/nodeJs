@@ -5,8 +5,10 @@ import {
     parseRequestUrl,
     $$,
     onLoadCartNumber,
-    productSearch
+    productSearch,
+    isAuthenticated
 } from "./utils";
+import authAPI from './api/auth';
 import ProductPage from "./pages/product";
 import ProductDetailPage from "./pages/product-detail";
 import CategoryPage from "./pages/category"
@@ -31,40 +33,141 @@ import OrderEditPage from './pages/OrderEditPage';
 import OrderDetailPageAdmin from './pages/OrderDetailPageAdmin';
 import orderDetail from './component/orderDetail';
 import OrderDetailPage from './pages/orderDetailPage';
+import PermissionPage from './pages/PermissionPage';
+import toast from 'toast-me';
 
-const routes = {
-    '/': ProductPage,
-    '/home': HomePage,
-    '/about': AboutPage,
-    '/contact': ContactPage,
-    '/product': ProductPage,
-    '/product/:id': ProductDetailPage,
-    '/category/:id': CategoryPage,
-    '/addproduct': ProductAddPage,
-    '/listproduct': ProductManagerPage,
-    '/editproduct/:id': ProductEditPage,
-    '/addcategory': CategoryAddPage,
-    '/listcategory': CategoryManagerPage,
-    '/editcategory/:id': CategoryEditPage,
-    '/listuser': UserManagerPage,
-    '/adduser': UserAddPage,
-    '/edituser/:id': UserEditPage,
-    '/signup': SignupPage,
-    '/signin': SigninPage,
-    '/error404': Error404Page,
-    '/shopcart': ShopCartPage,
-    '/search/:id': ProductSearchPage,
-    '/order': OrderPage,
-    '/listorder': OrderManagerPage,
-    '/editorder/:id': OrderEditPage,
-    '/orderdetailadmin/:id': OrderDetailPageAdmin,
-    '/orderdetail/:id': OrderDetailPage,
+let routes;
+async function checkPermission() {
+    if (isAuthenticated() !== false) {
+        const { data: user } = await authAPI.read(isAuthenticated()._id)
+        // console.log(user);
+        if(user.permission !== 0 ){
+            routes = {
+                '/': ProductPage,
+                '/home': HomePage,
+                '/about': AboutPage,
+                '/contact': ContactPage,
+                '/product': ProductPage,
+                '/product/:id': ProductDetailPage,
+                '/category/:id': CategoryPage,
+                '/shopcart': ShopCartPage,
+                '/orderdetail/:id': OrderDetailPage,
+                '/search/:id': ProductSearchPage,
+                '/order': OrderPage,
+                '/signup': SignupPage,
+                '/signin': SigninPage,
+                //admin
+                '/addproduct': ProductAddPage,
+                '/listproduct': ProductManagerPage,
+                '/editproduct/:id': ProductEditPage,
+                '/addcategory': CategoryAddPage,
+                '/listcategory': CategoryManagerPage,
+                '/editcategory/:id': CategoryEditPage,
+                '/listuser': UserManagerPage,
+                '/adduser': UserAddPage,
+                '/edituser/:id': UserEditPage,
+                '/error404': Error404Page,
+                '/listorder': OrderManagerPage,
+                '/editorder/:id': OrderEditPage,
+                '/orderdetailadmin/:id': OrderDetailPageAdmin,
+            }
+        } else {
+            routes = {
+                '/': ProductPage,
+                '/home': HomePage,
+                '/about': AboutPage,
+                '/contact': ContactPage,
+                '/product': ProductPage,
+                '/product/:id': ProductDetailPage,
+                '/category/:id': CategoryPage,
+                '/shopcart': ShopCartPage,
+                '/orderdetail/:id': OrderDetailPage,
+                '/search/:id': ProductSearchPage,
+                '/order': OrderPage,
+                '/signup': SignupPage,
+                '/signin': SigninPage,
+                //admin
+                '/addproduct': HomePage,
+                '/listproduct': HomePage,
+                '/editproduct/:id': HomePage,
+                '/addcategory': HomePage,
+                '/listcategory': HomePage,
+                '/editcategory/:id': HomePage,
+                '/listuser': HomePage,
+                '/adduser': HomePage,
+                '/edituser/:id': HomePage,
+                '/error404': HomePage,
+                '/listorder': HomePage,
+                '/editorder/:id': HomePage,
+                '/orderdetailadmin/:id': HomePage,
+            }
+        }
+    } else {
+        routes = {
+            '/': ProductPage,
+            '/home': HomePage,
+            '/about': AboutPage,
+            '/contact': ContactPage,
+            '/product': ProductPage,
+            '/product/:id': ProductDetailPage,
+            '/category/:id': CategoryPage,
+            '/shopcart': ShopCartPage,
+            '/orderdetail/:id': OrderDetailPage,
+            '/search/:id': ProductSearchPage,
+            '/order': OrderPage,
+            '/signup': SignupPage,
+            '/signin': SigninPage,
+            //admin
+            '/addproduct': HomePage,
+            '/listproduct': HomePage,
+            '/editproduct/:id': HomePage,
+            '/addcategory': HomePage,
+            '/listcategory': HomePage,
+            '/editcategory/:id': HomePage,
+            '/listuser': HomePage,
+            '/adduser': HomePage,
+            '/edituser/:id': HomePage,
+            '/error404': HomePage,
+            '/listorder': HomePage,
+            '/editorder/:id': HomePage,
+            '/orderdetailadmin/:id': HomePage,
+        }
+    }
 }
+// const routes = {
+//     '/': ProductPage,
+//     '/home': HomePage,
+//     '/about': AboutPage,
+//     '/contact': ContactPage,
+//     '/product': ProductPage,
+//     '/product/:id': ProductDetailPage,
+//     '/category/:id': CategoryPage,
+//     '/addproduct': ProductAddPage,
+//     '/listproduct': ProductManagerPage,
+//     '/editproduct/:id': ProductEditPage,
+//     '/addcategory': CategoryAddPage,
+//     '/listcategory': CategoryManagerPage,
+//     '/editcategory/:id': CategoryEditPage,
+//     '/listuser': UserManagerPage,
+//     '/adduser': UserAddPage,
+//     '/edituser/:id': UserEditPage,
+//     '/signup': SignupPage,
+//     '/signin': SigninPage,
+//     '/error404': Error404Page,
+//     '/shopcart': ShopCartPage,
+//     '/search/:id': ProductSearchPage,
+//     '/order': OrderPage,
+//     '/listorder': OrderManagerPage,
+//     '/editorder/:id': OrderEditPage,
+//     '/orderdetailadmin/:id': OrderDetailPageAdmin,
+//     '/orderdetail/:id': OrderDetailPage,
+// }
 
 const router = async () => {
     const { resource, id } = parseRequestUrl();
+    await checkPermission();
     const parseUrl = (resource ? `/${resource}` : '/') + (id ? `/:id` : '');
-    console.log('parseUrl -----'+parseUrl);
+    console.log('parseUrl -----' + parseUrl);
     const page = routes[parseUrl] ? routes[parseUrl] : Error404Page;
     // console.log(routes[parseUrl].render());
     document.querySelector('#content').innerHTML = await page.render();

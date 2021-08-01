@@ -40,18 +40,6 @@ export const remove = (req, res) => {
         })
     })
 }
-// export const update = (req, res) => {
-//     const user = req.profile;
-//     user.name = req.body.name;
-//     user.save((err, data) => {
-//         if(err){
-//             return res.status(400).json({
-//                 error: "Cập nhật User không thành công!"
-//             })
-//         }
-//         res.json(data);
-//     })
-// }
 
 export const update = (req, res) => {
     console.log(req);

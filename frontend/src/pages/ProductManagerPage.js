@@ -3,7 +3,7 @@ import adminNavbar from "../component/adminNavbar";
 import adminProductSidebar from "../component/adminProductSidebar";
 import adminFooter from "../component/adminFooter";
 import listProduct from "../component/listProduct";
-import { clickLogout } from "../utils";
+import { clickLogout, checkLogin } from "../utils";
 
 const ProductManagerPage = {
     async render() {
@@ -39,6 +39,7 @@ const ProductManagerPage = {
         `
     },
     async afterRender() {
+        checkLogin();
         clickLogout();
         return `${await listProduct.afterRender()}`
     }

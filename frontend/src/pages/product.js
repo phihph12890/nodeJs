@@ -1,4 +1,4 @@
-import { $$, prices, logout, clickLogout, addToCart, getTotalItemOnCart, reRender, onLoadCartNumber, productSearch } from '../utils';
+import { $$, prices, logout, clickLogout, addToCart, getTotalItemOnCart, reRender, onLoadCartNumber, productSearch, checkLogin } from '../utils';
 import header from '../component/header';
 import banner from '../component/banner';
 import footer from '../component/footer';
@@ -7,6 +7,7 @@ import categories from '../component/categories';
 import Cart from '../component/Cart';
 import toast from 'toast-me';
 import showListProducts from '../component/showListProducts';
+
 
 const ProductPage = {
     async render() {
@@ -70,6 +71,7 @@ const ProductPage = {
         }
     },
     async afterRender() {
+        
         productSearch();
         clickLogout();
         $$('#sticky').style.position = 'sticky';

@@ -45,8 +45,6 @@ const SigninPage = {
                     localStorage.setItem('token', JSON.stringify(data.token))
                     localStorage.setItem('user', JSON.stringify(data.user))
                     // authenticated(data);
-                    
-
                 })
                 .then(() => {
                     toast(

@@ -1,12 +1,13 @@
 import jwt_decode from "jwt-decode";
 import productAPI from "./api/productAPI";
+import authAPI from "./api/auth";
 import toast from 'toast-me';
 
 
 export const parseRequestUrl = () => {
     const url = window.location.hash.toLowerCase();
 
-    const request = url.split('/'); 
+    const request = url.split('/');
     // console.log(request);
     return {
         resource: request[1],
@@ -37,7 +38,7 @@ export const prices = (x) => {
     });
 }
 
-export const authenticated = ( accessToken ) => {
+export const authenticated = (accessToken) => {
     const user = jwt_decode(accessToken);
     if (typeof window !== 'undefined') {
         return localStorage.setItem('user', JSON.stringify(user));
@@ -127,21 +128,35 @@ export const getTotalItemOnCart = () => {
     return totalItems;
 }
 export const productSearch = () => {
-    if($$('#btn_search')){
+    if ($$('#btn_search')) {
         $$("#btn_search").addEventListener("click", function (e) {
             e.preventDefault();
-            
+
             const textSearch = $$("#inputSearch").value;
             window.location.hash = `/search/${textSearch}`;
         })
     }
 }
-
 export const onLoadCartNumber = () => {
     let cartNumber = localStorage.getItem('cartNumber');
     $$("#totalCart").textContent = cartNumber;
 }
-
+export const checkLogin = async () => {
+    const { data: user } = await authAPI.read(isAuthenticated()._id);
+    // console.log("222222222222222222222222222222222222222222222",user);
+    // console.log(isAuthenticated());
+    if (isAuthenticated() === false || user.permission == 0) {
+        toast(
+            'Không phải ADMIN. Từ chối quyền truy cập!',
+            { duration: 2500 },
+            {
+                // label: 'Confirm',
+                action: () => alert('Cool!'),
+                class: 'my-custom-class', // optional, CSS class name for action button
+            },
+        );
+    }
+}
 
 
 
