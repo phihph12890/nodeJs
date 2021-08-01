@@ -44,7 +44,7 @@ const ProductPage = {
                                 </div>
                             </aside>
                             <div class="col-span-3">
-                                <div class="container mx-auto flex">
+                                <div class="mx-auto flex">
                                     <select class="form-control rounded-md font-semibold px-3" name="" id="sort" style="width:240px;">
                                         <option value="" selected disabled> --- Sắp xếp sản phẩm --- </option>
                                         <option value="asc">Giá từ thấp đến cao</option>

@@ -142,12 +142,9 @@ export const onLoadCartNumber = () => {
     $$("#totalCart").textContent = cartNumber;
 }
 export const checkLogin = async () => {
-    const { data: user } = await authAPI.read(isAuthenticated()._id);
-    // console.log("222222222222222222222222222222222222222222222",user);
-    // console.log(isAuthenticated());
-    if (isAuthenticated() === false || user.permission == 0) {
+    if (isAuthenticated() === false) {
         toast(
-            'Không phải ADMIN. Từ chối quyền truy cập!',
+            'Chưa đăng nhập, truy cập bị từ chối!',
             { duration: 2500 },
             {
                 // label: 'Confirm',
@@ -156,6 +153,21 @@ export const checkLogin = async () => {
             },
         );
     }
+    if (isAuthenticated() !== false) {
+        const { data: user } = await authAPI.read(isAuthenticated()._id);
+        if (user.permission == 0) {
+            toast(
+                'Không phải ADMIN. Từ chối quyền truy cập!',
+                { duration: 2500 },
+                {
+                    // label: 'Confirm',
+                    action: () => alert('Cool!'),
+                    class: 'my-custom-class', // optional, CSS class name for action button
+                },
+            );
+        }
+    }
+    
 }
 
 

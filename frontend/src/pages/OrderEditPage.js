@@ -70,7 +70,8 @@ const OrderEditPage = {
             }
             console.log("old", order);
             console.log("new", newStatus);
-            orderAPI.update(id, newStatus);
+            let { _id: userId } = JSON.parse(localStorage.getItem('user'));
+            orderAPI.update(id, newStatus, userId);
             reRender(listOrderAdmin, '#list_order_admin');
             window.location.hash = '/listorder';
 

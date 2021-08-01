@@ -125,7 +125,7 @@ const ProductAddPage = {
                 console.log(textarea_product_description.value);
 
                 const productImage = $$("#product_image").files[0];
-                
+
                 let storageRef = firebase.storage().ref(`images/${productImage.name}`);
                 storageRef.put(productImage).then(function () {
                     storageRef.getDownloadURL().then((url) => {
@@ -141,7 +141,8 @@ const ProductAddPage = {
                             description: textarea_product_description.value
                         }
                         console.log(product);
-                        productAPI.add(product);
+                        let { _id: userId } = JSON.parse(localStorage.getItem('user'));
+                        productAPI.add(product, userId);
                         reRender(listProduct, '#list-products');
                         window.location.hash = '/listproduct';
                     })

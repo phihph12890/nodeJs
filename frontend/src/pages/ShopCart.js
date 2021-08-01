@@ -88,7 +88,7 @@ const ShopCartPage = {
     async afterRender() {
         clickLogout();
         productSearch();
-        
+
 
         const userId = isAuthenticated()._id;
         console.log(userId);
@@ -151,7 +151,8 @@ const ShopCartPage = {
                         create_at: moment(new Date()).format('DD-MM-YYYY'),
                         status: "CHƯA DUYỆT",
                     }
-                    orderAPI.add(order);
+                    
+                    orderAPI.add(order, userId);
                     toast(
                         'Thêm đơn hàng thành công!',
                         { duration: 2500 },

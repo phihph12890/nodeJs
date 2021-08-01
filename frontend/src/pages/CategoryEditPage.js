@@ -84,7 +84,8 @@ const ProductEditPage = {
                     }
                     console.log("old", category);
                     console.log("new", newCategory);
-                    categoryAPI.update(id, newCategory);
+                    let { _id: userId } = JSON.parse(localStorage.getItem('user'));
+                    categoryAPI.update(id, newCategory, userId);
                     reRender(listCategory, '#list-categories');
                     window.location.hash = '/listcategory';
                 } else {

@@ -23,14 +23,14 @@ const listProduct = {
                 </thead>
                 <tbody>
                 ${products.map((product, index) => {
-                    return `
+            return `
                         <tr>
                             <td class="border border-black font-semibold text-center" scope="row"><div style="width: 30px;" >${index + 1}</div></td>
                             <td class="border border-black font-semibold" style="width: 350px;" ><div>${product.name}</div></td>
                             <td class="border border-black font-semibold text-center">${product.category.name}</td>
                             <td class="border border-black " style="width:200px;"><img class="mx-auto" style="width: 100%; height: auto;" src="${product.image}" alt=""></td>
-                            <td class="border border-black text-center text-red-500 font-semibold">${prices(Number(product.price)).replace('VND','Đ')}</td>
-                            <td class="border border-black text-center text-red-500 font-semibold">${prices(Number(product.priceSale)).replace('VND','Đ')}</td>
+                            <td class="border border-black text-center text-red-500 font-semibold">${prices(Number(product.price)).replace('VND', 'Đ')}</td>
+                            <td class="border border-black text-center text-red-500 font-semibold">${prices(Number(product.priceSale)).replace('VND', 'Đ')}</td>
                             <td class="border border-black text-center">${product.guarantee}</td>
                             <td class="border border-black text-center">${product.quantity}</td>
                             <td class=" text-center border border-black" style="width: 50px;">
@@ -41,7 +41,7 @@ const listProduct = {
                             </td>
                         </tr>
                         `
-                }).join('')}
+        }).join('')}
                 </tbody>
             </table>
         </div>
@@ -54,13 +54,14 @@ const listProduct = {
             const id = btn.dataset.id
             btn.addEventListener("click", async () => {
                 const Confirm = confirm('Bạn có thật sự muốn xoá?');
-                if(Confirm){
-                    await productAPI.remove(id);
+                if (Confirm) {
+                    let { _id: userId } = JSON.parse(localStorage.getItem('user'));
+                    await productAPI.remove(id, userId);
                     reRender(listProduct, '#list-products');
                 }
             })
         })
     }
-    
+
 }
 export default listProduct;

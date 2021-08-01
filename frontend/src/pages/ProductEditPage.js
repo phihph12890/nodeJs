@@ -100,6 +100,7 @@ const ProductEditPage = {
         clickLogout();
         const { id } = parseRequestUrl();
         const { data: product } = await productAPI.read(id);
+        let { _id: userId } = JSON.parse(localStorage.getItem('user'));
 
         const textarea_product_config = document.querySelector('#product_config');
         ClassicEditor.create(textarea_product_config)
@@ -158,7 +159,7 @@ const ProductEditPage = {
                     }
                     console.log("old", product);
                     console.log("new", newProduct);
-                    await productAPI.update(id, newProduct);
+                    await productAPI.update(id, newProduct, userId);
                     await reRender(listProduct, '#list-products');
                     window.location.hash = '/listproduct';
                 } else {
@@ -180,7 +181,7 @@ const ProductEditPage = {
                             }
                             console.log("old", product);
                             console.log("new", newProduct);
-                            await productAPI.update(id, newProduct);
+                            await productAPI.update(id, newProduct, userId);
                             await reRender(listProduct, '#list-products');
                             window.location.hash = '/listproduct';
                         })

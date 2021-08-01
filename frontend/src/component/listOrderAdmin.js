@@ -85,7 +85,8 @@ const listOrderAdmin = {
                 } else {
                     const Confirm = confirm('Bạn có thật sự muốn xoá?');
                     if (Confirm) {
-                        await orderAPI.remove(id);
+                        let { _id: userId } = JSON.parse(localStorage.getItem('user'));
+                        await orderAPI.remove(id, userId);
                         reRender(listOrderAdmin, '#list_order_admin');
                         toast(
                             'Xoá thành công!',

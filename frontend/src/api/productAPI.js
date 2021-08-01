@@ -9,7 +9,7 @@ export const productAPI = {
         const url = `/products`;
         return axiosClient.get(url);
     },
-    productByCategory(id){
+    productByCategory(id) {
         const url = `/products/categories/${id}`;
         return axiosClient.get(url);
     },
@@ -21,16 +21,16 @@ export const productAPI = {
         const url = `/products/related/${id}`;
         return axiosClient.get(url);
     },
-    add(product) {
-        const url = `/products`;
+    add(product, userId) {
+        const url = `/products/${userId}`;
         return axiosClient.post(url, product);
     },
-    update(id, data) {
-        const url = `/products/${id}`;
+    update(id, data, userId) {
+        const url = `/products/${id}/${userId}`;
         return axiosClient.put(url, data);
     },
-    remove(id) {
-        const url = `/products/${id}`;
+    remove(id, userId) {
+        const url = `/products/${id}/${userId}`;
         return axiosClient.delete(url);
     },
     search(textSearch) {

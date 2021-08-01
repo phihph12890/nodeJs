@@ -13,16 +13,16 @@ export const orderAPI = {
         const url = `/orders/${id}`;
         return axiosClient.get(url);
     },
-    add(order) {
-        const url = `/orders`;
+    add(order, userId) {
+        const url = `/orders/${userId}`;
         return axiosClient.post(url, order);
     },
-    update(id, data) {
-        const url = `/orders/${id}`;
+    update(id, data, userId) {
+        const url = `/orders/${id}/${userId}`;
         return axiosClient.put(url, data);
     },
-    remove(id) {
-        const url = `/orders/${id}`;
+    remove(id, userId) {
+        const url = `/orders/${id}/${userId}`;
         return axiosClient.delete(url);
     }
 }

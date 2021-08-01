@@ -71,7 +71,7 @@ const listOrder = {
                     checkStatus[i].innerHTML = ` <i class="text-red-500 text-lg fas fa-frown"></i></i>`;
                 }
             }
-        } 
+        }
         else {
             if (orders.status == "ĐÃ HOÀN THÀNH") {
                 checkStatus.innerHTML = ` <i class="text-green-500 text-lg fas fa-check"></i>`;
@@ -100,7 +100,8 @@ const listOrder = {
                 } else {
                     const Confirm = confirm('Bạn có thật sự muốn xoá?');
                     if (Confirm) {
-                        await orderAPI.remove(id);
+                        let { _id: userId } = JSON.parse(localStorage.getItem('user'));
+                        await orderAPI.remove(id, userId);
                         reRender(listOrder, '#list_order');
                         toast(
                             'Xoá thành công!',

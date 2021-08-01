@@ -16,7 +16,7 @@ const listCategory = {
                 </thead>
                 <tbody>
                     ${categories.map((category, index) => {
-                        return `
+            return `
                             <tr>
                                 <td scope="row"><div>${index + 1}</div></td>
                                 <td class="font-semibold"><div class="pt- px-32" style="width: 400px;">${category.name}</div></td>
@@ -28,7 +28,7 @@ const listCategory = {
                                 </td>
                             </tr>
                         `
-                    }).join('')}
+        }).join('')}
                 </tbody>
             </table>
         </div>
@@ -42,7 +42,8 @@ const listCategory = {
             btn.addEventListener("click", async () => {
                 const Confirm = confirm('Bạn có thật sự muốn xoá?');
                 if (Confirm) {
-                    await categoryAPI.remove(id);
+                    let { _id: userId } = JSON.parse(localStorage.getItem('user'));
+                    await categoryAPI.remove(id, userId);
                     reRender(listCategory, '#list-categories');
                 }
             })

@@ -18,12 +18,12 @@ export const categoryAPI = {
         const url = `/categories/${userId}`;
         return axiosClient.post(url, category);
     },
-    update(id, data) {
-        const url = `/categories/${id}`;
+    update(id, data, userId) {
+        const url = `/categories/${id}/${userId}`;
         return axiosClient.put(url, data);
     },
-    remove(id) {
-        const url = `/categories/${id}`;
+    remove(id, userId) {
+        const url = `/categories/${id}/${userId}`;
         return axiosClient.delete(url);
     }
 }
