@@ -10,13 +10,13 @@ router.get('/orders', list);
 //Danh sách đơn hàng theo user
 router.get('/orders/users/:userId', orderByUser);
 //Thêm đơn hàng 
-router.post('/orders/:userId', requireSignin, isAuth, isAdmin, create);
+router.post('/orders', create);
 //Chi tiêt đơn hàng
 router.get('/orders/:orderId', read);
 //Xoá đơn hàng 
-router.delete('/orders/:orderId/:userId', requireSignin, isAuth, isAdmin, remove);
+router.delete('/orders/:orderId', remove);
 //Cập nhật trạng thái đơn hàng
-router.put('/orders/:orderId/:userId', requireSignin, isAuth, isAdmin, update);
+router.put('/orders/:orderId', update);
 //Lấy param
 router.param('orderId', orderById);
 router.param('userId', userById);

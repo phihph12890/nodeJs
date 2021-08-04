@@ -162,6 +162,7 @@ const ShopCartPage = {
                             class: 'my-custom-class', // optional, CSS class name for action button
                         },
                     );
+                    window.location.hash = '/order';
                 } else {
                     errorEmail.innerHTML = "Email sai định dạng!"
                 }
