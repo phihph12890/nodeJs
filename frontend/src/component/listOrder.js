@@ -73,9 +73,9 @@ const listOrder = {
             }
         }
         else {
-            if (orders.status == "ĐÃ HOÀN THÀNH") {
+            if (orders[0].status == "ĐÃ HOÀN THÀNH") {
                 checkStatus.innerHTML = ` <i class="text-green-500 text-lg fas fa-check"></i>`;
-            } else if (orders.status == "ĐÃ DUYỆT") {
+            } else if (orders[0].status == "ĐÃ DUYỆT") {
                 checkStatus.innerHTML = ` <i class=" text-blue-500 text-lg fas fa-smile"></i>`;
             } else {
                 checkStatus.innerHTML = ` <i class="text-red-500 text-lg fas fa-frown"></i></i>`;

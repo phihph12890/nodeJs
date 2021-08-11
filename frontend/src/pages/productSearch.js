@@ -71,7 +71,7 @@ const ProductSearchPage = {
         $$('#sticky').style.position = 'sticky';
         $$('#sticky').style.top = "30px";
         const btns = $$(".btn_addCart");
-        btns.forEach(async (btn) => {
+        btns.forEach(async (btn) => { 
             var btn_id = btn.dataset.id;
             btn.addEventListener("click", async () => {
                 console.log(btn_id);
