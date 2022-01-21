@@ -52,7 +52,7 @@ const ProductPage = {
                                     </select>
                                     <select class="form-control rounded-md font-semibold px-2 ml-3" name="" id="filter" style="width:255px;">
                                         <option value="" selected disabled> --- Lọc sản phẩm theo giá --- </option>
-                                        <option value="0-1500000">Dưới 15 triệu đồng</option>
+                                        <option value="0-15000000">Dưới 15 triệu đồng</option>
                                         <option value="15000000-30000000">15 triệu - 30 triệu</option>
                                         <option value="30000000-40000000">30 triệu - 40 triệu</option>
                                         <option value="40000000-990000000">Trên 40 triệu đồng</option>
@@ -105,7 +105,6 @@ const ProductPage = {
             $$("#list_product").innerHTML = resultSort;
             
             const btns = $$(".btn_addCart");
-            console.log(btns);
             if (btns.length > 1) {
                 btns.forEach(async (btn) => {
                     var btn_id = btn.dataset.id;
@@ -136,6 +135,7 @@ const ProductPage = {
             console.log(valueFilter);
             const [valueFilter1, valueFilter2] = valueFilter;
             const { data: productFilter } = await productAPI.filterPrice(valueFilter1, valueFilter2);
+            console.log(productFilter);
             const resultFilter = productFilter.map(product => {
                 return `
                     <div class="group overflow-hidden shadow-md bg-white ">
@@ -158,7 +158,6 @@ const ProductPage = {
             $$("#list_product").innerHTML = resultFilter;
 
             const btns = $$(".btn_addCart");
-            console.log(btns);
             if (btns.length > 1) {
                 btns.forEach(async (btn) => {
                     var btn_id = btn.dataset.id;
@@ -182,12 +181,10 @@ const ProductPage = {
             }
         })
         const btns = $$(".btn_addCart");
-        console.log(btns);
         if (btns.length > 1) {
             btns.forEach(async (btn) => {
                 var btn_id = btn.dataset.id;
                 btn.addEventListener("click", async () => {
-                    console.log(btn_id);
                     var { data: products } = await productAPI.read(btn_id);
                     addToCart(`${products._id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.category._id}`, `${products.category.name}`);
                     getTotalItemOnCart();
@@ -197,7 +194,6 @@ const ProductPage = {
         } else {
             var btn_id = btns.dataset.id;
             btns.addEventListener("click", async () => {
-                console.log(btn_id);
                 var { data: products } = await productAPI.read(btn_id);
                 addToCart(`${products._id}`, `${products.name}`, `${products.image}`, `${products.priceSale}`, `${products.category._id}`, `${products.category.name}`);
                 getTotalItemOnCart();

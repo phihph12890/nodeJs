@@ -30,7 +30,7 @@ const listUser = {
                                 `
                             }
                         }
-                    return `
+                        return `
                             <tr>
                                 <td scope="row"><div>${index + 1}</div></td>
                                 <td><div class="pt-1 px-5" style="width: 200px">${user.name}</div></td>
@@ -44,7 +44,7 @@ const listUser = {
                                 </td>
                             </tr>
                         `
-        }).join('')}
+                    }).join('')}
                 </tbody>
             </table>
         </div>

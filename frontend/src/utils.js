@@ -133,7 +133,7 @@ export const productSearch = () => {
             e.preventDefault();
 
             const textSearch = $$("#inputSearch").value;
-            window.location.hash = `/search/${textSearch}`;
+            
         })
     }
 }

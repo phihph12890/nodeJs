@@ -77,7 +77,7 @@ const CategoryAddPage = {
                         name: $$("#category_name").value,
                     }
                     let { _id: userId } = JSON.parse(localStorage.getItem('user'));
-
+                    
                     categoryAPI.add(category, userId)
                         .then(() => {
                             reRender(listCategory, '#list-categories');

@@ -23,7 +23,7 @@ const listProduct = {
                 </thead>
                 <tbody>
                 ${products.map((product, index) => {
-            return `
+                    return `
                         <tr>
                             <td class="border border-black font-semibold text-center" scope="row"><div style="width: 30px;" >${index + 1}</div></td>
                             <td class="border border-black font-semibold" style="width: 350px;" ><div>${product.name}</div></td>
@@ -41,7 +41,7 @@ const listProduct = {
                             </td>
                         </tr>
                         `
-        }).join('')}
+                }).join('')}
                 </tbody>
             </table>
         </div>

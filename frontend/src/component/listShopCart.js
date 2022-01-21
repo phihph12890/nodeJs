@@ -42,7 +42,7 @@ const listShopCart = {
                     `
                 }).join('');
                 return `
-                <div class="text-right mb-2"><button id="removeCart" class="btn btn-danger">Xoá giỏ hàng</button></div>
+                    <div class="text-right mb-2"><button id="removeCart" class="btn btn-danger">Xoá giỏ hàng</button></div>
                     <table>
                         <thead>
                             <tr class="text-center">
@@ -227,18 +227,18 @@ const listShopCart = {
                 })
             } else {
                 const minus_id = btn_plus.dataset.id;
-                    btn_plus.addEventListener("click", function () {
-                        for (let i = 0; i < listCart.length; i++) {
-                            if (listCart[i].id == minus_id) {
-                                listCart[i].quantity++;
-                                cartNumber++;
-                                console.log(listCart[i]);
-                                localStorage.setItem("cartNumber", cartNumber);
-                                localStorage.setItem("cart", JSON.stringify(listCart));
-                                reRender(listShopCart, '#list_cart');
-                            }
+                btn_plus.addEventListener("click", function () {
+                    for (let i = 0; i < listCart.length; i++) {
+                        if (listCart[i].id == minus_id) {
+                            listCart[i].quantity++;
+                            cartNumber++;
+                            console.log(listCart[i]);
+                            localStorage.setItem("cartNumber", cartNumber);
+                            localStorage.setItem("cart", JSON.stringify(listCart));
+                            reRender(listShopCart, '#list_cart');
                         }
-                    })
+                    }
+                })
             }
         }
     }
